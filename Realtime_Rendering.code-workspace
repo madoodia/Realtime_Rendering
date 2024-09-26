@@ -1,0 +1,104 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+    // {
+    // 	"name": "DirectX-Headers",
+    // 	"path": "D:\\madoodia\\pkgs\\Renderers\\DirectX-Headers"
+    // },
+    // {
+    // 	"path": "d:\\madoodia\\pkgs\\Renderers\\DxrTutorials"
+    // },
+    // {
+    // 	"path": "d:\\madoodia\\pkgs\\Renderers\\DirectX-Graphics-Samples"
+    // }
+  ],
+  "settings": {},
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "setup",
+        "type": "shell",
+        "command": "powershell",
+        "args": ["-Command", "& setup ${workspaceFolder};"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "dependsOn": []
+      },
+      {
+        "type": "shell",
+        "label": "build",
+        "command": "W:\\cmd\\build.bat",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "dependsOn": ["setup"],
+        "args": [
+          "${workspaceFolder}",
+          "${relativeFileDirname}",
+          "${fileBasenameNoExtension}",
+          "${relativeFileDirname}",
+          "${fileDirname}"
+        ]
+      },
+      {
+        "type": "shell",
+        "label": "debug",
+        "command": "W:\\cmd\\debug.bat",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "dependsOn": ["setup"],
+        "args": [
+          "${workspaceFolder}",
+          "${relativeFileDirname}",
+          "${fileBasenameNoExtension}",
+          "${relativeFileDirname}",
+          "${fileDirname}"
+        ]
+      },
+      {
+        "type": "shell",
+        "label": "run",
+        "command": "W:\\cmd\\run.bat",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "dependsOn": ["setup"],
+        "args": [
+          "${workspaceFolder}",
+          "${relativeFileDirname}",
+          "${fileBasenameNoExtension}",
+          "${relativeFileDirname}",
+          "${fileDirname}"
+        ]
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "cppvsdbg",
+        "name": "Debug",
+        "request": "launch",
+        "program": "${workspaceFolder}/cmd/Freedom.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "preLaunchTask": "build",
+        // "postDebugTask": "clean",
+        "environment": [],
+        "console": "externalTerminal"
+      }
+    ],
+    "compounds": []
+  }
+}
